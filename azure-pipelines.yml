@@ -16,6 +16,6 @@ steps:
 # Publish Test Results to Azure Pipelines/TFS
 - task: PublishTestResults@2
   inputs:
-    testResultsFormat: 'xUnit'
+    testResultsFormat: 'VSTest'
     testResultsFiles: '**/TestResults/*.trx'
     buildConfiguration: $(buildConfiguration)
