@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using BrokeredMessaging.Abstractions;
 using BrokeredMessaging.Messaging.Features;
 
 namespace BrokeredMessaging.Messaging

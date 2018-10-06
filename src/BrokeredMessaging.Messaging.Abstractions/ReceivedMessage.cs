@@ -1,7 +1,6 @@
-﻿using BrokeredMessaging.Messaging;
-using System.IO;
+﻿using System.IO;
 
-namespace BrokeredMessaging.Abstractions
+namespace BrokeredMessaging.Messaging
 {
     /// <summary>
     /// Represents a message received from a message broker.

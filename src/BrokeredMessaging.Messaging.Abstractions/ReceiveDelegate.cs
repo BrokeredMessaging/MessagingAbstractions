@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace BrokeredMessaging.Abstractions
+namespace BrokeredMessaging.Messaging
 {
     /// <summary>
     /// A function that can process a received message.

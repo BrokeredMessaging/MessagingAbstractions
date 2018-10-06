@@ -57,5 +57,41 @@ namespace BrokeredMessaging.Messaging.Tests
 
             Assert.Equal(feature.ReceiveServices, context.RecieveServices);
         }
+
+        [Fact]
+        public void DeliveryAcknowledgementProperties_MapToDeliveryAcknowledgementProperties()
+        {
+            var context = new DefaultReceiveContext();
+
+            var feature = new TestDeliveryAcknowledgementFeature();
+
+            context.Features.Set<IDeliveryAcknowledgementFeature>(feature);
+
+            Assert.Equal(feature.Sent, context.DeliveryAcknowledgement.Sent);
+            Assert.Equal(feature.Status, context.DeliveryAcknowledgement.Status);
+            Assert.Equal(feature.StatusReason, context.DeliveryAcknowledgement.StatusReason);
+
+            feature.Sent = true;
+            feature.Status = DeliveryStatus.Rejected;
+            feature.StatusReason = "fibble";
+
+            Assert.Equal(feature.Sent, context.DeliveryAcknowledgement.Sent);
+            Assert.Equal(feature.Status, context.DeliveryAcknowledgement.Status);
+            Assert.Equal(feature.StatusReason, context.DeliveryAcknowledgement.StatusReason);
+        }
+
+        [Fact]
+        public void SendDeliveryAcknowlegementAsync_InvokesDeliveryFeature()
+        {
+            var context = new DefaultReceiveContext();
+
+            var featureMock = new Mock<IDeliveryAcknowledgementFeature>();
+
+            context.Features.Set(featureMock.Object);
+
+            context.DeliveryAcknowledgement.SendAsync();
+
+            featureMock.Verify(o => o.SendAsync());
+        }
     }
 }

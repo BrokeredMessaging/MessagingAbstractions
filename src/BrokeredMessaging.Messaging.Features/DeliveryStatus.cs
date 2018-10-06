@@ -1,4 +1,4 @@
-﻿namespace BrokeredMessaging.Messaging.Features
+﻿namespace BrokeredMessaging.Messaging
 {
     /// <summary>
     /// Specifies the status of a message's delivery.
