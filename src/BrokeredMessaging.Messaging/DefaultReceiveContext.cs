@@ -25,8 +25,6 @@ namespace BrokeredMessaging.Messaging
 
         private FeatureAccessor<ContextFeatures> _features;
 
-        private FeaturesChangeToken _changeToken;
-
         public DefaultReceiveContext()
             : this(new FeatureCollection())
         {
@@ -34,12 +32,16 @@ namespace BrokeredMessaging.Messaging
 
         public DefaultReceiveContext(IFeatureCollection features)
         {
-            Features = features ?? throw new ArgumentNullException(nameof(features));
+            if (features == null)
+            {
+                throw new ArgumentNullException(nameof(features));
+            }
 
+            _features = new FeatureAccessor<ContextFeatures>(features);
             _receivedMessage = new DefaultReceivedMessage(this);
         }
 
-        public override IFeatureCollection Features { get; }
+        public override IFeatureCollection Features => _features.Collection;
 
         private IReceiveLifetimeFeature ReceiveLifetimeFeature
             => _features.Get(ref _features.Cache.ReceiveLifetime, ReceiveLifetimeFeatureFactory);

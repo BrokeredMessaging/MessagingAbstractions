@@ -15,6 +15,7 @@ namespace BrokeredMessaging.Messaging
         public DefaultReceivedMessage(ReceiveContext receiveContext)
         {
             ReceiveContext = receiveContext ?? throw new ArgumentNullException(nameof(receiveContext));
+            _features = new FeatureAccessor<ReceivedMessageFeatures>(receiveContext.Features);
         }
 
         private IReceivedMessageFeature ReceivedMessageFeature

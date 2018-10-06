@@ -4,18 +4,18 @@ namespace BrokeredMessaging.Messaging.Features
 {
     public struct FeatureAccessor<TCache> where TCache : struct
     {
-        private readonly IFeatureCollection _features;
-
         private FeaturesChangeToken _changeToken;
 
-        public FeatureAccessor(IFeatureCollection features)
+        public FeatureAccessor(IFeatureCollection collection)
         {
-            _features = features ?? throw new ArgumentNullException(nameof(features));
-            _changeToken = features.GetChangeToken();
+            Collection = collection ?? throw new ArgumentNullException(nameof(collection));
+            _changeToken = collection.GetChangeToken();
             Cache = default;
         }
 
         public TCache Cache;
+
+        public IFeatureCollection Collection { get; }
 
         public TFeature Get<TFeature>(ref TFeature feature, Func<TFeature> featureFactory)
             where TFeature : class
@@ -39,21 +39,21 @@ namespace BrokeredMessaging.Messaging.Features
             }
 
             // Update the cache from the features collection.
-            feature = _features.Get<TFeature>();
+            feature = Collection.Get<TFeature>();
 
             if (feature == null)
             {
                 // If the feature doesn't exist in the collection, initialize it now.
                 feature = featureFactory();
-                _features.Set(feature);
+                Collection.Set(feature);
 
                 // We changed the collection; save the new change token.
-                _changeToken = _features.GetChangeToken();
+                _changeToken = Collection.GetChangeToken();
             }
             else if (flush)
             {
                 // If the cache has been flushed, update the change token.
-                _changeToken = _features.GetChangeToken();
+                _changeToken = Collection.GetChangeToken();
             }
 
             return feature;
