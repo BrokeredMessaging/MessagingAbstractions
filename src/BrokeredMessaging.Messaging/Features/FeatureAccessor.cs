@@ -16,7 +16,6 @@ namespace BrokeredMessaging.Messaging.Features
         }
 
         public TCache Cache;
-        internal IReceivedMessageFeature ReceivedMessage;
 
         public TFeature Get<TFeature>(ref TFeature feature, Func<TFeature> featureFactory)
             where TFeature : class
