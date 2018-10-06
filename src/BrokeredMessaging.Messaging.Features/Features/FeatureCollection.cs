@@ -36,7 +36,7 @@ namespace BrokeredMessaging.Messaging.Features
             ((ICollection<KeyValuePair<Type, object>>)_features).CopyTo(array, arrayIndex);
         }
 
-        public TFeature Get<TFeature>()
+        public TFeature Get<TFeature>() where TFeature : class
         {
             var key = typeof(TFeature);
             if (_features.TryGetValue(key, out var feature))
@@ -63,7 +63,7 @@ namespace BrokeredMessaging.Messaging.Features
             return removed;
         }
 
-        public void Set<TFeature>(TFeature feature)
+        public void Set<TFeature>(TFeature feature) where TFeature : class
         {
             var key = typeof(TFeature);
             if (feature == null)

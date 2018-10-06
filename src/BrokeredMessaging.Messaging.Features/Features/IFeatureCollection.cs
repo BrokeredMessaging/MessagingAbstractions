@@ -20,13 +20,13 @@ namespace BrokeredMessaging.Messaging.Features
         /// <typeparam name="TFeature">The type of feature to get.</typeparam>
         /// <returns>The feature from the collection, or <c>null</c> if the feature
         /// does not exist.</returns>
-        TFeature Get<TFeature>();
+        TFeature Get<TFeature>() where TFeature : class;
 
         /// <summary>
         /// Sets a feature in the collection.
         /// </summary>
         /// <typeparam name="TFeature">The type of feature being set.</typeparam>
         /// <param name="feature">The feature to set.</param>
-        void Set<TFeature>(TFeature feature);
+        void Set<TFeature>(TFeature feature) where TFeature : class;
     }
 }

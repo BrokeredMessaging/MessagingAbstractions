@@ -12,37 +12,77 @@ namespace BrokeredMessaging.Messaging
     /// </summary>
     public class DefaultReceiveContext : ReceiveContext
     {
-        public DefaultReceiveContext()
-        {
+        private static readonly Func<IReceiveLifetimeFeature> ReceiveLifetimeFeatureFactory = ()
+            => new ReceiveLifetimeFeatureStub();
 
+        private static readonly Func<IServiceProvidersFeature> ServiceProvidersFeatureFactory = ()
+            => new ServiceProvidersFeatureStub();
+
+        private static readonly Func<IDeliveryAcknowledgementFeature> DeliveryAcknowledgementFeatureFactory = ()
+            => new DeliveryAcknowledgementFeatureStub();
+
+        private readonly ReceivedMessage _receivedMessage;
+
+        private FeatureAccessor<ContextFeatures> _features;
+
+        private FeaturesChangeToken _changeToken;
+
+        public DefaultReceiveContext()
+            : this(new FeatureCollection())
+        {
         }
 
         public DefaultReceiveContext(IFeatureCollection features)
         {
+            Features = features ?? throw new ArgumentNullException(nameof(features));
 
+            _receivedMessage = new DefaultReceivedMessage(this);
         }
 
-        public override IFeatureCollection Features => throw new NotImplementedException();
+        public override IFeatureCollection Features { get; }
 
-        public override CancellationToken ReceiveAborted => throw new NotImplementedException();
+        private IReceiveLifetimeFeature ReceiveLifetimeFeature
+            => _features.Get(ref _features.Cache.ReceiveLifetime, ReceiveLifetimeFeatureFactory);
 
-        public override ReceivedMessage ReceivedMessage => throw new NotImplementedException();
+        private IServiceProvidersFeature ServiceProvidersFeature
+            => _features.Get(ref _features.Cache.ServiceProviders, ServiceProvidersFeatureFactory);
 
-        public override IServiceProvider RecieveServices => throw new NotImplementedException();
+        private IDeliveryAcknowledgementFeature DeliveryAcknowledgementFeature
+            => _features.Get(ref _features.Cache.DeliveryAcknowledgement, DeliveryAcknowledgementFeatureFactory);
+
+        public override CancellationToken ReceiveAborted => ReceiveLifetimeFeature.ReceiveAborted;
+
+        public override ReceivedMessage ReceivedMessage => _receivedMessage;
+
+        public override IServiceProvider RecieveServices => ServiceProvidersFeature.ReceiveServices;
 
         public override Task AcknowledgeAsync()
         {
-            throw new NotImplementedException();
+            DeliveryAcknowledgementFeature.Status = DeliveryStatus.Ok;
+            return DeliveryAcknowledgementFeature.SendAsync();
         }
 
         public override Task RejectAsync(string reason)
         {
-            throw new NotImplementedException();
+            DeliveryAcknowledgementFeature.Status = DeliveryStatus.Rejected;
+            DeliveryAcknowledgementFeature.StatusReason = reason;
+            return DeliveryAcknowledgementFeature.SendAsync();
         }
 
         public override Task RetryAsync(string reason)
         {
-            throw new NotImplementedException();
+            DeliveryAcknowledgementFeature.Status = DeliveryStatus.Retry;
+            DeliveryAcknowledgementFeature.StatusReason = reason;
+            return DeliveryAcknowledgementFeature.SendAsync();
+        }
+
+        private struct ContextFeatures
+        {
+            public IReceiveLifetimeFeature ReceiveLifetime;
+
+            public IServiceProvidersFeature ServiceProviders;
+
+            public IDeliveryAcknowledgementFeature DeliveryAcknowledgement;
         }
     }
 }
