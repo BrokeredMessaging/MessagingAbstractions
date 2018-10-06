@@ -10,7 +10,7 @@ steps:
 # Build the .NET Core components, run their tests and publish the output packages
 - script: |
     dotnet build --configuration $(buildConfiguration)
-    dotnet test tests/BrokeredMessaging.Messaging.Tests --configuration $(buildConfiguration) --logger trx
+    dotnet test ./tests/BrokeredMessaging.Messaging.Tests --configuration $(buildConfiguration) --logger trx --no-build --no-restore
     dotnet publish --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY
 
 # Publish Test Results to Azure Pipelines/TFS
