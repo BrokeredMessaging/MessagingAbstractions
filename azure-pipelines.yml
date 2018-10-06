@@ -4,6 +4,8 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
+name: $(SourceBranchName)-build$(Rev:.r)
+
 steps:
 # Build the .NET Core components, run their tests and publish the output packages
 - script: |
