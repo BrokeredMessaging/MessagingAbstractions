@@ -24,3 +24,5 @@ steps:
 
 # Publish artifacts
 - task: PublishBuildArtifacts@1
+  inputs:
+    artifactName: packages
