@@ -7,15 +7,17 @@ variables:
 name: $(SourceBranchName)-build$(Rev:.r)
 
 steps:
-# Build the .NET Core components, run their tests and publish the output packages
+# Build the .NET Core components
 - script: |
     dotnet build --configuration $(buildConfiguration)
-    dotnet test ./test/BrokeredMessaging.Messaging.Tests --configuration $(buildConfiguration) --logger trx --no-build --no-restore
-    dotnet publish --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY --no-build --no-restore
 
-# Publish Test Results to Azure Pipelines/TFS
-- task: PublishTestResults@2
+# Run project tests
+- task: DotNetCoreCLI@2
   inputs:
-    testResultsFormat: 'VSTest'
-    testResultsFiles: '**/TestResults/*.trx'
-    buildConfiguration: $(buildConfiguration)
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) --no-build --no-restore'
+
+# Publish output packages
+- script:
+    dotnet publish --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY --no-build --no-restore
