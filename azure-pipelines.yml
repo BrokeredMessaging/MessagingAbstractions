@@ -16,8 +16,11 @@ steps:
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --no-build --no-restore'
+    arguments: '--configuration $(buildConfiguration) --no-build --no-restore --collect "Code Coverage"'
 
-# Publish output packages
+# Create output packages
 - script:
-    dotnet publish --configuration $(buildConfiguration) --output $BUILD_ARTIFACTSTAGINGDIRECTORY --no-build --no-restore
+    dotnet pack --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --no-build --no-restore
+
+# Publish artifacts
+- task: PublishBuildArtifacts@1
