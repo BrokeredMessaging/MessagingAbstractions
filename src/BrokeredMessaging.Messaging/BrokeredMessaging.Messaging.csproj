@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -14,12 +14,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageLicenseUrl>https://raw.githubusercontent.com/BrokeredMessaging/MessagingAbstractions/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <Description>BrokeredMessaging messaging object model for receiving messages from a message broker.
-
-Commonly used types:
-BrokeredMessaging.Messaging.ReceiveContext
-BrokeredMessaging.Messaging.ReceivedMessage
-BrokeredMessaging.Messaging.DeliveryAcknowledgement</Description>
+    <Description>BrokeredMessaging default messaging implementations.</Description>
     <FileVersion>0.1.0.0</FileVersion>
     <Version>0.1.0</Version>
   </PropertyGroup>

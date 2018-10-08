@@ -1,10 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Description>Brokered Messaging feature interface definitions.</Description>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <RootNamespace>BrokeredMessaging.Messaging</RootNamespace>
+    <PackageIconUrl>https://avatars0.githubusercontent.com/u/43686941?s=400&amp;u=f85196761b1caa8d86c011f10b7eb510a5971d87&amp;v=4</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/BrokeredMessaging/MessagingAbstractions</PackageProjectUrl>
+    <Copyright>© BrokeredMessaging. All rights reserved.</Copyright>
+    <Company>BrokeredMessaging</Company>
+    <Product>BrokeredMessaging</Product>
+    <Authors>BrokeredMessaging</Authors>
+    <RepositoryUrl>https://github.com/BrokeredMessaging/MessagingAbstractions</RepositoryUrl>
+    <PackageTags>Messaging BrokeredMessaging</PackageTags>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/BrokeredMessaging/MessagingAbstractions/master/LICENSE</PackageLicenseUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>Brokered Messaging feature interface definitions.</Description>
+    <FileVersion>0.1.0.0</FileVersion>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
