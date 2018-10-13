@@ -19,11 +19,13 @@ namespace BrokeredMessaging.Messaging.Tests
 
             feature.Headers = new HeaderDictionary();
             feature.Body = Stream.Null;
+            feature.Source = "test";
 
             var message = context.ReceivedMessage;
 
             Assert.Equal(feature.Headers, message.Headers);
             Assert.Equal(feature.Body, message.Body);
+            Assert.Equal(feature.Source, message.Source);
         }
 
         [Fact]

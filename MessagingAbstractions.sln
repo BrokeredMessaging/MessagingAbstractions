@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrokeredMessaging.Messaging
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrokeredMessaging.Messaging", "src\BrokeredMessaging.Messaging\BrokeredMessaging.Messaging.csproj", "{5516E9A4-148D-40D0-A3B4-5E1F933FDA99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrokeredMessaging.Messaging.Tests", "test\BrokeredMessaging.Messaging.Tests\BrokeredMessaging.Messaging.Tests.csproj", "{EEF897A8-CBF6-437A-867B-E3636D717980}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrokeredMessaging.Messaging.Tests", "test\BrokeredMessaging.Messaging.Tests\BrokeredMessaging.Messaging.Tests.csproj", "{EEF897A8-CBF6-437A-867B-E3636D717980}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

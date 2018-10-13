@@ -12,5 +12,7 @@ namespace BrokeredMessaging.Messaging.Tests
         public IHeaderDictionary Headers { get; set; }
 
         public Stream Body { get; set; }
+
+        public string Source { get; set; }
     }
 }

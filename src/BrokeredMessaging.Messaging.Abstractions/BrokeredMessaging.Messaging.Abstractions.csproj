@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>7.3</LangVersion>
     <RootNamespace>BrokeredMessaging.Messaging</RootNamespace>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <PackageIconUrl>https://avatars0.githubusercontent.com/u/43686941?s=400&amp;u=f85196761b1caa8d86c011f10b7eb510a5971d87&amp;v=4</PackageIconUrl>
     <PackageProjectUrl>https://github.com/BrokeredMessaging/MessagingAbstractions</PackageProjectUrl>
     <Copyright>© BrokeredMessaging. All rights reserved.</Copyright>

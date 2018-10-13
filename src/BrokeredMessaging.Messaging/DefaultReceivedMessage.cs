@@ -30,6 +30,12 @@ namespace BrokeredMessaging.Messaging
             set => ReceivedMessageFeature.Body = value;
         }
 
+        public override string Source
+        {
+            get => ReceivedMessageFeature.Source;
+            set => ReceivedMessageFeature.Source = value;
+        }
+
         private struct ReceivedMessageFeatures
         {
             public IReceivedMessageFeature ReceivedMessage;

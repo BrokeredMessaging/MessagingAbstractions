@@ -21,5 +21,10 @@ namespace BrokeredMessaging.Messaging
         /// Gets or sets the body of the message.
         /// </summary>
         public abstract Stream Body { get; set; }
+
+        /// <summary>
+        /// Gets or sets the identifier of the container the message was received from.
+        /// </summary>
+        public abstract string Source { get; set; }
     }
 }

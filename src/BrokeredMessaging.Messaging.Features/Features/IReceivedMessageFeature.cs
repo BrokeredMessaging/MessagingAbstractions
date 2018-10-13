@@ -9,7 +9,7 @@ namespace BrokeredMessaging.Messaging.Features
     public interface IReceivedMessageFeature
     {
         /// <summary>
-        /// Gets or sets the headers of the dictionary.
+        /// Gets or sets the headers of the message.
         /// </summary>
         IHeaderDictionary Headers { get; set; }
 
@@ -17,5 +17,10 @@ namespace BrokeredMessaging.Messaging.Features
         /// Gets or sets the body of the message.
         /// </summary>
         Stream Body { get; set; }
+
+        /// <summary>
+        /// Gets or sets the identifier of the container the message was received from.
+        /// </summary>
+        string Source { get; set; }
     }
 }
