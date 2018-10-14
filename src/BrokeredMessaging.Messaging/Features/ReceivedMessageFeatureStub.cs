@@ -10,5 +10,7 @@ namespace BrokeredMessaging.Messaging.Features
         public IHeaderDictionary Headers { get; set; } = new HeaderDictionary();
 
         public Stream Body { get; set; } = Stream.Null;
+
+        public string Source { get; set; }
     }
 }
