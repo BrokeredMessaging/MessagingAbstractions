@@ -16,11 +16,6 @@ namespace BrokeredMessaging.Messaging
         IServiceProvider ReceiverServices { get; }
 
         /// <summary>
-        /// Gets the collection of features made available to the receiver.
-        /// </summary>
-        IFeatureCollection Features { get; }
-
-        /// <summary>
         /// Gets a key/value which can be used to share information between middleware. 
         /// </summary>
         IDictionary<string, object> Properties { get; }
